@@ -288,6 +288,7 @@ function GlobalStoreContextProvider(props) {
             const response = await api.getPlaylistPairs();
             if (response.data.success) {
                 let pairsArray = response.data.idNamePairs;
+                console.log(pairsArray)
                 storeReducer({
                     type: GlobalStoreActionType.LOAD_ID_NAME_PAIRS,
                     payload: pairsArray
@@ -320,7 +321,9 @@ function GlobalStoreContextProvider(props) {
     store.deleteList = function (id) {
         async function processDelete(id) {
             let response = await api.deletePlaylistById(id);
+            console.log("hello: " + response.data)
             if (response.data.success) {
+                
                 store.loadIdNamePairs();
                 history.push("/");
             }
@@ -328,9 +331,11 @@ function GlobalStoreContextProvider(props) {
         processDelete(id);
     }
     store.deleteMarkedList = function() {
+        console.log("HELLO: " +  store.listIdMarkedForDeletion)
         store.deleteList(store.listIdMarkedForDeletion);
         store.hideModals();
     }
+    
     // THIS FUNCTION SHOWS THE MODAL FOR PROMPTING THE USER
     // TO SEE IF THEY REALLY WANT TO DELETE THE LIST
 
