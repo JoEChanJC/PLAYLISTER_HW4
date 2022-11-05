@@ -314,12 +314,16 @@ input {
   justify-content: space-between;
   border-bottom: dotted;
 }
-
+.modal-error{
+  font-size: larger;
+}
 .modal-header,
 .modal-close {
   font-size: 1.5rem;
 }
-
+.modal-center-error-message{
+  font-size:x-large
+}
 .modal p + p {
   margin-top: 1rem;
 }
@@ -336,8 +340,15 @@ input {
 #close-modal-button {
   float: right;
 }
-
+.remove-song-cancel-button{
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 #confirm-cancel-container {
+  
   text-align: center;
 }
 

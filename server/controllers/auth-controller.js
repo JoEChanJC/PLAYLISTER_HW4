@@ -96,6 +96,7 @@ logoutUser = async (req, res) => {
 
 registerUser = async (req, res) => {
     try {
+        console.log("IM HERE")
         const { firstName, lastName, email, password, passwordVerify } = req.body;
         console.log("create user: " + firstName + " " + lastName + " " + email + " " + password + " " + passwordVerify);
         if (!firstName || !lastName || !email || !password || !passwordVerify) {

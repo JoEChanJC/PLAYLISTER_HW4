@@ -15,7 +15,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-
+import AccountErrorModal from './AccountErrorModal';
 export default function LoginScreen() {
     const { auth } = useContext(AuthContext);
 
@@ -26,9 +26,13 @@ export default function LoginScreen() {
             formData.get('email'),
             formData.get('password')
         );
+        
 
     };
-
+    let modalJSX = "";
+    if (auth.isErrorModalOpen()) {
+        modalJSX = <AccountErrorModal />;
+    }    
     return (
         <Grid container component="main" sx={{ height: '100vh' }}>
             <CssBaseline />
@@ -111,6 +115,7 @@ export default function LoginScreen() {
                     </Box>
                 </Box>
             </Grid>
+            { modalJSX }
         </Grid>
     );
 }

@@ -12,6 +12,7 @@ import Link from '@mui/material/Link';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import AccountErrorModal from './AccountErrorModal';
 
 export default function RegisterScreen() {
     const { auth } = useContext(AuthContext);
@@ -19,6 +20,7 @@ export default function RegisterScreen() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
+        console.log(formData)
         auth.registerUser(
             formData.get('firstName'),
             formData.get('lastName'),
@@ -27,7 +29,10 @@ export default function RegisterScreen() {
             formData.get('passwordVerify')
         );
     };
-
+    let modalJSX = "";
+    if (auth.isErrorModalOpen()) {
+        modalJSX = <AccountErrorModal />;
+    }    
     return (
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
