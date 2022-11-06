@@ -25,6 +25,7 @@ function EditToolbar() {
         store.redo();
     }
     function handleClose() {
+        
         store.closeCurrentList();
     }
     return (
