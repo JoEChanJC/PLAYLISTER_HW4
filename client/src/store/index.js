@@ -76,7 +76,7 @@ function GlobalStoreContextProvider(props) {
                 return setStore({
                     currentModal : CurrentModal.NONE,
                     idNamePairs: payload.idNamePairs,
-                    currentList: payload.playlist,
+                    currentList: store.currentList,
                     currentSongIndex: -1,
                     currentSong: null,
                     newListCounter: store.newListCounter,
@@ -160,7 +160,7 @@ function GlobalStoreContextProvider(props) {
                 return setStore({
                     currentModal : CurrentModal.NONE,
                     idNamePairs: store.idNamePairs,
-                    currentList: payload,
+                    currentList: null,
                     currentSongIndex: -1,
                     currentSong: null,
                     newListCounter: store.newListCounter,
@@ -236,8 +236,7 @@ function GlobalStoreContextProvider(props) {
                                 storeReducer({
                                     type: GlobalStoreActionType.CHANGE_LIST_NAME,
                                     payload: {
-                                        idNamePairs: pairsArray,
-                                        playlist: playlist
+                                        idNamePairs: pairsArray
                                     }
                                 });
                             }
