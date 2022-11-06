@@ -516,7 +516,20 @@ function GlobalStoreContextProvider(props) {
     store.canClose = function() {
         return (store.currentList !== null);
     }
-
+    function handleKeyDown(event){
+        let charCode = String.fromCharCode(event.which).toLowerCase();
+        if((event.ctrlKey || event.metaKey)) {
+            if((event.ctrlKey || event.metaKey) && charCode === 'z'){  
+                store.undo();
+            }
+            else if((event.ctrlKey || event.metaKey) && charCode === 'y') {    
+                store.redo();
+            }
+        }
+        else{
+            event.stopPropagation();
+        }
+    }
     // THIS FUNCTION ENABLES THE PROCESS OF EDITING A LIST NAME
     store.setIsListNameEditActive = function () {
         storeReducer({
@@ -524,7 +537,7 @@ function GlobalStoreContextProvider(props) {
             payload: null
         });
     }
-
+    document.onkeydown =(e) => handleKeyDown(e)
     return (
         <GlobalStoreContext.Provider value={{
             store
