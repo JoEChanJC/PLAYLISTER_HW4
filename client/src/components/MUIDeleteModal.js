@@ -9,9 +9,9 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    width: 350,
+    height: 150,
+    bgcolor: 'rgba(52, 52, 52, 0.1)',
     boxShadow: 24,
     p: 4,
 };
@@ -34,23 +34,35 @@ export default function MUIDeleteModal() {
             open={store.listMarkedForDeletion !== null}
         >
             <Box sx={style}>
-                <div className="modal-dialog">
-                <header className="dialog-header">
-                    Delete the {name} Top 5 List?
-                </header>
-                <div id="confirm-cancel-container">
-                    <button
-                        id="dialog-yes-button"
-                        className="modal-button"
-                        onClick={handleDeleteList}
-                    >Confirm</button>
-                    <button
-                        id="dialog-no-button"
-                        className="modal-button"
-                        onClick={handleCloseModal}
-                    >Cancel</button>
+                <div
+                    id='edit-song-root'
+                    className="modal-root">
+                    <div className="modal-north">
+
+                        Delete the {name} Playlist?
+
+                    </div>
+                    <div className="modal-textfield">
+                        Are you sure you wish to permanently delete the <span style={{ fontWeight: 'bold' }}>{name}</span> playlist?
+                    </div>
+                    <div className="modal-south">
+                        <input
+                            type="button"
+                            id="remove-song-confirm-button"
+                            className="modal-button"
+                            onClick={handleDeleteList}
+                            value='Confirm' />
+                        <input
+                            type="button"
+                            id="remove-song-cancel-button"
+                            className="modal-button"
+                            onClick={handleCloseModal}
+                            value='Cancel' />
+                    </div>
+
+
+
                 </div>
-            </div>
             </Box>
         </Modal>
     );

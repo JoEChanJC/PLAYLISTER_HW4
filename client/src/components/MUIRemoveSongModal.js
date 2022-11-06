@@ -9,9 +9,9 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    width: 350,
+    height: 150,
+    bgcolor: 'rgba(52, 52, 52, 0.1)',
     boxShadow: 24,
     p: 4,
 };
@@ -38,7 +38,7 @@ export default function MUIRemoveSongModal() {
 
     return (
         <Modal
-            open={store.listMarkedForDeletion !== null}
+            open={store.isRemoveSongModalOpen()}
         >
             <Box sx={style}>
             <div
@@ -49,10 +49,8 @@ export default function MUIRemoveSongModal() {
             <div className="modal-north">
                 Remove {songTitle}?
             </div>
-            <div className="modal-center">
-                <div className="modal-center-content">
-                    Are you sure you wish to permanently remove {songTitle} from the playlist?
-                </div>
+            <div className="modal-textfield">
+                    Are you sure you wish to permanently remove <span style={{ fontWeight: 'bold' }}>{songTitle}</span> from the playlist?
             </div>
             <div className="modal-south">
                 <input type="button" 

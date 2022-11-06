@@ -9,9 +9,10 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 200,
+    height: 150,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+
     boxShadow: 24,
     p: 4,
 };
@@ -22,6 +23,10 @@ export default function MUIEditSongModal() {
     const [ artist, setArtist ] = useState(store.currentSong.artist);
     const [ youTubeId, setYouTubeId ] = useState(store.currentSong.youTubeId);
 
+    let modalClass = "modal";
+    if (store.isEditSongModalOpen()) {
+        modalClass += " is-visible";
+    }
     function handleConfirmEditSong() {
         let newSongData = {
             title: title,
@@ -49,12 +54,12 @@ export default function MUIEditSongModal() {
 
     return (
         <Modal
-            open={store.listMarkedForDeletion !== null}
+            open={store.isEditSongModalOpen()}
         >
             <Box sx={style}>
             <div
             id="edit-song-modal"
-            className="modal is-visible"
+            className={modalClass}
             data-animation="slideInOutLeft">
             <div
                 id='edit-song-root'
@@ -79,7 +84,7 @@ export default function MUIEditSongModal() {
                         type="text" 
                         defaultValue={artist} 
                         onChange={handleUpdateArtist} />
-                    <div id="you-tube-id-prompt" className="modal-prompt">You Tube Id:</div>
+                    <div id="you-tube-id-prompt" className="modal-prompt">YouTube-ID:</div>
                     <input 
                         id="edit-song-modal-youTubeId-textfield" 
                         className='modal-textfield' 
